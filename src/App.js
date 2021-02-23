@@ -30,7 +30,7 @@ const App = () => {
    console.log(cart)
    return (
       <div>
-         <Navbar totalItems={cart.total_items} />
+         <Navbar totalItems={cart.line_items ? cart.line_items.length : 0} />
          {/* <Products products={products} onAddToCart={handleAddToCart} /> */}
          <Cart cart={cart} />
       </div>
