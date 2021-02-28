@@ -35,7 +35,6 @@ const AddressForm = ({ checkoutToken, next }) => {
    const fetchShippingCountries = async (checkoutTokenId) => {
       const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId)
       
-      console.log('countries', countries)
       setShippingCountries(countries)
       setShippingCountry(Object.keys(countries)[0])
    }
@@ -67,11 +66,19 @@ const AddressForm = ({ checkoutToken, next }) => {
       if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision)
    }, [shippingSubdivision])
 
+   const onSubmit = data => {
+      console.log(data)
+      console.log(shippingCountry)
+      console.log(shippingSubdivision)
+      console.log(shippingOption)
+      next({...data, shippingCountry, shippingSubdivision, shippingOption })
+   }
+
    return (
       <>
          <Typography variant="h6" gutterBottom>Shipping Adress</Typography>
          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit((data) => next({...data. shippingCountry, shippingSubdivision, shippingOption }))}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
                <Grid container spacing={3}>
                   <FormInput name="firstName" label="First name" />
                   <FormInput name="lastName" label="Last name" />
