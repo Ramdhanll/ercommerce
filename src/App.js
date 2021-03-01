@@ -45,14 +45,18 @@ const App = () => {
    }
 
    const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-      try {
-         const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
-         setOrder(incomingOrder)
-         console.log('incomingOrder', incomingOrder)
-         refreshCart()
-      } catch (error) {
-         setErrorMessage(error.data.error.message)
-      }
+      console.log('running handle capture checkout!')
+      refreshCart()
+
+      // try {
+      //    const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
+      //    setOrder(incomingOrder)
+      //    console.log('incomingOrder', incomingOrder)
+      //    refreshCart()
+      // } catch (error) {
+      //    console.log('error', error)
+      //    setErrorMessage(error.data.error.message)
+      // }
    }
 
    useEffect(() => {
